@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sergioKmoralesV/blockchain-light-twitter/issues"
   },
-  "homepage": "https://github.com/sergioKmoralesV/blockchain-light-twitter#readme"
+  "homepage": "https://github.com/sergioKmoralesV/blockchain-light-twitter#readme",
+  "devDependencies": {
+    "hardhat": "^2.9.9"
+  }
 }
