@@ -23,7 +23,7 @@ function App() {
       });
       console.log('Connected to chain:', chainId);
 
-      const goerlyChainId = '0x1';
+      const goerlyChainId = '0x5';
       if (chainId !== goerlyChainId) {
         setNetwork(false);
         console.error('You are not connected');
@@ -44,6 +44,7 @@ function App() {
   // Checks if wallet is connected to the correct network
   const checkCorrectNetwork = async () => {
     const { ethereum } = window;
+
     const chainId = await ethereum.request({
       method: 'eth_chainId',
     });
@@ -81,7 +82,8 @@ function App() {
       }}
     >
       <Sidebar />
-      <Feed isAccConnected={isEmpty(currentAcc)} account={currentAcc} />
+      <Feed isAccConnected={isEmpty(currentAcc)} account={currentAcc}
+            connectAction={connectWallet} />
       <Widgets />
     </div>
   </Stack>);
