@@ -27,7 +27,7 @@ Make sure that you create your account in `ETH`, since our contracts are running
 ### Connect to the network
 To connect to the network where your SmartContract is running, please follow the instructions in this page: https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC
 
-Here we show you our configuration for our testing Blockchain:
+Here we show you our configuration for our testing Blockchain: </br>
 ![example of readme](./public/readme/configuration-network.png)
 
 The fields should be filled as follows:
