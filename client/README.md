@@ -37,7 +37,7 @@ The fields should be filled as follows:
 - **Currency Symbol:** In any case, we use ETH
 
 🚨 **IMPORTANT INFORMATION:** DON'T FORGET THAT YOUR NETWORK SHOULD BE THE SAME USED TO DEPLOY YOUR CONTRACT 🚨
-### Important remarks 👀
+## Important remarks 👀
 - You can only edit 📝 and delete 🗑 **your own** contracts
 - We are using a web application (the application is not adapted for mobile users)
 - We are not saving users' information 👍 (only wallets addresses) for the purpose of tracking which posts are you able to edit/delete or not.
