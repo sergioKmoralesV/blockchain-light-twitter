@@ -36,4 +36,4 @@ The fields should be filled as follows:
 - **Chain ID:** This corresponds to your main network used (in this case we use 4 for Rinkeby but it has announced that will be deprecated soon)
 - **Currency Symbol:** In any case, we use ETH
 
-🚨 **IMPORTANT INFORMATION: DON'T FORGET THAT YOUR NETWORK SHOULD BE THE SAME USED TO DEPLOY YOUR CONTRACT** 🚨
+🚨 **IMPORTANT INFORMATION:** DON'T FORGET THAT YOUR NETWORK SHOULD BE THE SAME USED TO DEPLOY YOUR CONTRACT 🚨
