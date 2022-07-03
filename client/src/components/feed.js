@@ -116,7 +116,9 @@ const Feed = ({ isAccConnected, connectAction }) => {
         width: '100%', maxWidth: 400, bgcolor: 'background.paper',
       }}>
         {
-          posts.map((p) => <Post key={p.id} {...p} onDelete={deleteTweet(p.id)} />)
+          posts.map((p) => <Post key={p.id} {...p}
+                                 onSubmitFunc={getAllTweets}
+                                 onDelete={deleteTweet(p.id)} />)
         }
       </FlipMove>
     </div>

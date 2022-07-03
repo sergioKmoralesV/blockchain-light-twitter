@@ -1,13 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, TextField } from '@mui/material';
-// import { ethers } from 'ethers';
+import { ethers } from 'ethers';
 import PropTypes from 'prop-types';
-// import TwitterContractAddress from '../config';
-// import Twitter from '../utils/TwitterContract.json';
+import TwitterContractAddress from '../config';
+import Twitter from '../utils/TwitterContract.json';
 
 const EditPostInput = ({ onSubmitFunc, tweet, onCancel }) => {
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: 'onSubmit',
     defaultValues: {
       tweetText: tweet.tweetText,
@@ -15,32 +15,27 @@ const EditPostInput = ({ onSubmitFunc, tweet, onCancel }) => {
   });
 
   async function onSubmit(values) {
-    console.log(values, onSubmitFunc, reset);
-    // const tweet = {
-    //   tweetText: values.tweetText, isDeleted: false,
-    // };
-    //
-    // try {
-    //   const { ethereum } = window;
-    //
-    //   if (ethereum) {
-    //     const provider = new ethers.providers.Web3Provider(ethereum);
-    //     const signer = provider.getSigner();
-    //     const TwitterContract = new ethers.Contract(TwitterContractAddress, Twitter.abi, signer);
-    //
-    //     TwitterContract.createTweet(tweet.tweetText, tweet.isDeleted).then(() => {
-    //       console.log('Tweet created successfully');
-    //       if (onSubmitFunc) {
-    //         onSubmitFunc();
-    //       }
-    //       reset();
-    //     });
-    //   } else {
-    //     console.log("Ethereum object doesn't exist!");
-    //   }
-    // } catch (error) {
-    //   console.log('Error submitting new Tweet', error);
-    // }
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const TwitterContract = new ethers.Contract(TwitterContractAddress, Twitter.abi, signer);
+
+        TwitterContract.updateTweet(tweet.id, values.tweetText).then(() => {
+          console.log('Tweet updated successfully');
+          onCancel();
+          if (onSubmitFunc) {
+            onSubmitFunc();
+          }
+        });
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log('Error updating Tweet', error);
+    }
   }
 
   return (<form onSubmit={handleSubmit(onSubmit)}>

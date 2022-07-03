@@ -8,7 +8,7 @@ import { baseColor, secondaryColor } from '../lib/theme';
 import EditPost from './editPost';
 
 const Post = forwardRef((props, ref) => {
-  const { tweetText, username, personal, onDelete, id } = props;
+  const { tweetText, username, personal, onDelete, id, onSubmitFunc } = props;
 
   const [openEdit, setOpenEdit] = useState(false);
 
@@ -23,6 +23,7 @@ const Post = forwardRef((props, ref) => {
         {tweetText}
       </Typography>}
       {openEdit && <EditPost onCancel={() => setOpenEdit(false)}
+                             onSubmitFunc={onSubmitFunc}
                              tweet={{
                                tweetText, username, personal, id,
                              }}
@@ -65,6 +66,7 @@ Post.propTypes = {
   username: PropTypes.string.isRequired,
   personal: PropTypes.bool.isRequired,
   onDelete: PropTypes.func,
+  onSubmitFunc: PropTypes.func,
 };
 
 Post.defaultProps = {

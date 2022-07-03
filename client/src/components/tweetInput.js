@@ -13,7 +13,6 @@ const TweetInput = ({ isDisabled, onSubmitFunc }) => {
   });
 
   async function onSubmit(values) {
-    console.log(values);
     const tweet = {
       tweetText: values.tweetText, isDeleted: false,
     };
