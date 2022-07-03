@@ -1,9 +1,13 @@
 import { createTheme } from '@mui/material/styles';
 
 export const backgroundColor = '#FFF';
+export const baseColor = '#55acee';
 
 const { palette } = createTheme({
   palette: {
+    primary: {
+      main: baseColor,
+    },
     background: {
       default: backgroundColor,
     },
@@ -28,20 +32,30 @@ const theme = createTheme({
       'sans-serif',
     ].join(','),
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {},
+        notchedOutline: {
+          borderColor: 'transparent !important',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: baseColor,
+          fontSize: 14,
+          fontWeight: 600,
+          lineHeight: '24px',
+          borderRadius: '20rem',
+          '&:hover': {
+            backgroundColor: '#559fee',
+          },
+        },
+      },
+    },
+  },
 });
 
 export default theme;
-//
-// body {
-//     margin: 0;
-//     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-//         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-//     sans-serif;
-//     -webkit-font-smoothing: antialiased;
-//     -moz-osx-font-smoothing: grayscale;
-// }
-//
-// code {
-//     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-//         monospace;
-// }

@@ -1,6 +1,7 @@
 import React from 'react';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { IconButton } from '@mui/material';
+import { baseColor } from '../lib/theme';
 
 const Sidebar = () => (<div style={{
   width: 400,
@@ -11,7 +12,7 @@ const Sidebar = () => (<div style={{
   alignItems: 'baseline',
 }}>
   <IconButton sx={{
-    fontSize: '48px', color: '#55acee',
+    fontSize: '48px', color: baseColor,
   }}>
     <TwitterIcon fontSize={'inherit'} />
   </IconButton>

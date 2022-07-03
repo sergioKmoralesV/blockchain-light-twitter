@@ -13,6 +13,9 @@ module.exports = {
   rules: {
     'object-curly-newline': ['error', {
       'ObjectExpression': { 'multiline': true, 'minProperties': 1 },
+      'ObjectPattern': { 'multiline': true },
+      'ImportDeclaration': { 'multiline': true, 'minProperties': 4 },
+      'ExportDeclaration': 'never'
     }],
     'object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
     'no-tabs': ['error', { allowIndentationTabs: true }]
