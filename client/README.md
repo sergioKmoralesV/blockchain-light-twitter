@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Light Decentralized Twitter
+### Authors ✍️
+- Sergio Morales (https://github.com/sergioKmoralesV)
+- Isaac Gonzales (https://github.com/Isaacgv)
+- Anthony Siampiringue (https://github.com/Anthony-Si)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting started 🏁
+### Install dependencies
+To start the application make sure you are using the version `> 16` of `node.
+To install all the dependencies, please run the command:
+```
+npm install
+```
+### Verify my Twitter contract config
+Please, verify that your **Smart Contract Address** is well configured in `./src/config.js`.
+If the information is incorrect, you won't be able to effectuate any operations.
 
-## Available Scripts
+### Running the application
+To run the application, run the command:
+```
+npm start
+```
+## Using Smart Contracts 📑
+### Create a MetaMask wallet.
+For our testing purposes, we are using the plugin of **MetaMask** that you can find here: https://metamask.io/
+Make sure that you create your account in `ETH`, since our contracts are running on Ethereum.
+### Connect to the network
+To connect to the network where your SmartContract is running, please follow the instructions in this page: https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC
 
-In the project directory, you can run:
+Here we show you our configuration for our testing Blockchain:
+![example of readme](./public/readme/configuration-network.png)
 
-### `npm start`
+The fields should be filled as follows:
+- **Network name:** As you prefer to call the network
+- **New RPC URL:** This link corresponds to your Alchemy App link
+- **Chain ID:** This corresponds to your main network used (in this case we use 4 for Rinkeby but it has announced that will be deprecated soon)
+- **Currency Symbol:** In any case, we use ETH
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🚨 **IMPORTANT INFORMATION: DON'T FORGET THAT YOUR NETWORK SHOULD BE THE SAME USED TO DEPLOY YOUR CONTRACT** 🚨
