@@ -1,82 +1,53 @@
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
 
-// describe("Contract : readTweets() unit tests", function () {
-//   it("Should return an array containing the non deleted tweets", async function () {
-//     const EPITwitter = await ethers.getContractFactory("Twitter");
-//     const twitter = await EPITwitter.deploy();
-//     await twitter.deployed();
-//
-//     expect(await twitter.readTweets()).to.instanceOf(Array);
-//   });
-//
-//   it("Should return the size of the array of non deleted tweets", async function () {
-//     const EPITwitter = await ethers.getContractFactory("Twitter");
-//     const twitter = await EPITwitter.deploy();
-//     await twitter.deployed();
-//     expect(await twitter.readTweets().length).to.gte(0);
-//   });
-// });
-//
-//
-// describe("Contract : createTweet(string memory _tweetText, bool _isDeleted) unit tests", function () {
-//   it("Tweet creation : Should return the user account name and the tweeterId", async function () {
-//     const EPITwitter = await ethers.getContractFactory("Twitter");
-//     const accounts = await ethers.getSigners();
-//     const twitter = await EPITwitter.deploy();
-//     await twitter.deployed();
-//
-//     expect(await twitter.createTweet("adding tweet unit case", false)).to.emit(accounts[0],twitter.tweetId);
-//   });
-//
-// });
-//
-//
-// describe("Contract : deleteTweet(uint _tweetId) unit tests", function () {
-//   it("Tweet deletion : Should return tweetId and true boolean value", async function () {
-//     const EPITwitter = await ethers.getContractFactory("Twitter");
-//     const twitter = await EPITwitter.deploy();
-//     await twitter.deployed();
-//
-//     expect(await twitter.deleteTweet(1)).to.emit(twitter.tweetId,true);
-//   });
-//
-// });
+const {expect} = require("chai");
+const {ethers} = require("hardhat");
+const {address} = require('hardhat/internal/core/config/config-validation')
 
+describe("EPITwitter Contract : unit tests", function() {
+  let EPITwitter;
+  let twitter;
+  let owner;
 
-
-describe("Contract : sequence unit tests", function () {
-  it("Tweet creation : Should return the user account name and the tweeterId", async function () {
-    const EPITwitter = await ethers.getContractFactory("Twitter");
-    const accounts = await ethers.getSigners();
-    const twitter = await EPITwitter.deploy();
-    await twitter.deployed();
-
-    expect(await twitter.createTweet("adding tweet unit case", false)).to.emit(accounts[0],twitter.tweetId);
+  beforeEach(async function() {
+    EPITwitter = await ethers.getContractFactory("Twitter");
+    [owner, addr1, addr2] = await ethers.getSigners();
+    twitter = await EPITwitter.deploy();
   });
 
-  it("Tweet listing : Should return an array containing the non deleted tweets", async function () {
-    const EPITwitter = await ethers.getContractFactory("Twitter");
-    const twitter = await EPITwitter.deploy();
-    await twitter.deployed();
-
-    expect(await twitter.readTweets()).to.instanceOf(Array);
+  describe("UT 1: Create tweet", function() {
+    it("should emit createTweet event", async function() {
+      let tweet = {
+        'tweetText': 'Unit test New Tweet',
+        'isDeleted': false
+      };
+      await expect(await twitter.createTweet(tweet.tweetText, tweet.isDeleted)).to.emit(twitter, 'CreateTweet'),twitter.tweetId;
+    })
   });
 
-  it("Tweet listing : Should return the size of the array of non deleted tweets", async function () {
-    const EPITwitter = await ethers.getContractFactory("Twitter");
-    const twitter = await EPITwitter.deploy();
-    await twitter.deployed();
-    expect(await twitter.readTweets().length).to.not.equal(0);
+  describe("UT 2: Get all Tweets", function() {
+    it("should return the correct number of total tweets", async function() {
+      const tweetsFromChain = await twitter.readTweets();
+      expect(tweetsFromChain.length).to.greaterThanOrEqual(0);
+    })
+  })
+
+  describe("UT 3: Update tweet", function() {
+    it("should emit updateTweet event", async function() {
+      let tweet = {
+        'tweetText': 'New Tweet',
+        'isDeleted': false
+      };
+      const TWEET_ID = twitter.readTweets();
+      await expect(await twitter.updateTweet(TWEET_ID,tweet.tweetText)).to.emit(twitter, 'UpdateTweet').withArgs(TWEET_ID,tweetText);
+    })
   });
 
-  it("Tweet deletion : Should return tweetId and true boolean value", async function () {
-    const EPITwitter = await ethers.getContractFactory("Twitter");
-    const twitter = await EPITwitter.deploy();
-    const accounts = await ethers.getSigners();
-    await twitter.deployed();
-    twitter.signer=accounts[0]
-    expect(await twitter.deleteTweet(0)).to.emit(twitter.tweetId,true);
-  });
 
+  describe("UT 4: Delete Tweet", function() {
+    it("should emit delete tweet event", async function() {
+      const TWEET_ID = twitter.readTweets();
+      const TWEET_DELETED = true;
+      await expect(twitter.connect(addr1).deleteTweet(TWEET_ID)).to.emit(twitter, 'DeleteTweet').withArgs(TWEET_ID, TWEET_DELETED);
+    })
+  })
 });
