@@ -18,6 +18,7 @@ const TweetInput = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div style={{
         width: '100%',
+        marginBottom: 10,
       }}>
         <TextField
           placeholder='Write your tweet here'
