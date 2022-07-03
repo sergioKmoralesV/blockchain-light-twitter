@@ -25,7 +25,7 @@ contract Twitter {
      * @param _isDeleted Whether the tweet is deleted or not
      */
     function createTweet(string memory _tweetText, bool _isDeleted) external {
-        uint tweetId = tweets.length -1;
+        uint tweetId = tweets.length;
         tweets.push(
             Tweet(tweetId, msg.sender, _tweetText, _isDeleted)
             );
