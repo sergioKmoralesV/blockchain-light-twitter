@@ -43,8 +43,6 @@ const { ethers } = require("hardhat");
 //
 // });
 
-
-
 describe("Contract : sequence unit tests", function () {
   it("Tweet creation : Should return the user account name and the tweeterId", async function () {
     const EPITwitter = await ethers.getContractFactory("Twitter");
@@ -52,7 +50,7 @@ describe("Contract : sequence unit tests", function () {
     const twitter = await EPITwitter.deploy();
     await twitter.deployed();
 
-    expect(await twitter.createTweet("adding tweet unit case", false)).to.emit(accounts[0],twitter.tweetId);
+    expect(await twitter.createTweet("adding tweet unit case", false)).to.emit(accounts[0], twitter.tweetId);
   });
 
   it("Tweet listing : Should return an array containing the non deleted tweets", async function () {
@@ -75,8 +73,7 @@ describe("Contract : sequence unit tests", function () {
     const twitter = await EPITwitter.deploy();
     const accounts = await ethers.getSigners();
     await twitter.deployed();
-    twitter.signer=accounts[0]
-    expect(await twitter.deleteTweet(0)).to.emit(twitter.tweetId,true);
+    twitter.signer = accounts[0];
+    expect(await twitter.deleteTweet(0)).to.emit(twitter.tweetId, true);
   });
-
 });
