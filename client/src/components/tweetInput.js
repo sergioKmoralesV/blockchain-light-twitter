@@ -5,6 +5,7 @@ import { ethers } from 'ethers';
 import PropTypes from 'prop-types';
 import TwitterContractAddress from '../config';
 import Twitter from '../utils/TwitterContract.json';
+import { secondaryColor } from '../lib/theme';
 
 const TweetInput = ({ isDisabled }) => {
   const { register, handleSubmit, reset } = useForm({
@@ -38,13 +39,15 @@ const TweetInput = ({ isDisabled }) => {
       console.log('Error submitting new Tweet', error);
     }
 
-    console.log(values);
+    if (onSubmit) {
+      onSubmit();
+    }
     reset();
   }
 
   return (<form onSubmit={handleSubmit(onSubmit)}>
     <div style={{
-      width: '100%', marginBottom: 10,
+      width: '100%', marginBottom: 10, padding: '0 20px',
     }}>
       <TextField
         placeholder='Write your tweet here'
@@ -57,7 +60,11 @@ const TweetInput = ({ isDisabled }) => {
       />
     </div>
     <div style={{
-      width: '100%', display: 'flex', justifyContent: 'flex-end',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'flex-end',
+      borderBottom: `1px solid ${secondaryColor}`,
+      padding: '0 20px 20px 20px',
     }}>
       <Button color='primary' variant='contained' type={'submit'} sx={{
         textTransform: 'none',
@@ -74,6 +81,7 @@ const TweetInput = ({ isDisabled }) => {
 
 TweetInput.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export default TweetInput;

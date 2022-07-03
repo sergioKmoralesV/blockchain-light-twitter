@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 export const backgroundColor = '#FFF';
 export const baseColor = '#55acee';
+export const secondaryColor = '#e1e8ed';
 
 const { palette } = createTheme({
   palette: {
@@ -51,6 +52,9 @@ const theme = createTheme({
           borderRadius: '20rem',
           '&:hover': {
             backgroundColor: '#559fee',
+          },
+          '&.Mui-disabled': {
+            pointerEvents: 'auto',
           },
         },
       },
