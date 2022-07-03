@@ -6,7 +6,7 @@
 
 ## Getting started 🏁
 ### Install dependencies
-To start the application make sure you are using the version `> 16` of `node.
+To start the application make sure you are using the version `> 16` of `node`.
 To install all the dependencies, please run the command:
 ```
 npm install
@@ -42,4 +42,4 @@ The fields should be filled as follows:
 - We are using a web application (the application is not adapted for mobile users)
 - We are not saving users' information 👍 (only wallets addresses) for the purpose of tracking which posts are you able to edit/delete or not.
 - There is **no real time ⏰ update** if you do a tweet from other browser, laptop. Therefore, if you want to see the new changes from these options, please **refresh** the window.
-- ⚠️ Don't forget to use **test nets**. We don't make responsible for the usage of this application with no-test nets ETH wallets.
+- ⚠️ Don't forget to use **test nets**. We don't take responsibility for the usage of this application with no-test nets ETH wallets.
