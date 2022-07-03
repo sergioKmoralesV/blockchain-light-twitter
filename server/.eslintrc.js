@@ -9,6 +9,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
   },
+  rules: {
+    'max-len': ["error", { "code": 120 }]
+  },
   overrides: [
     {
       files: ["hardhat.config.js"],

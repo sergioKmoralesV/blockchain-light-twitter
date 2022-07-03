@@ -46,8 +46,6 @@ const Feed = ({ isAccConnected, connectAction }) => {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const TwitterContract = new ethers.Contract(TwitterContractAddress, Twitter.abi, signer);
-
-        console.log(signer, TwitterContract);
         const allTweets = await TwitterContract.readTweets();
         setPosts(getStructuredTweets(allTweets, ethereum.selectedAddress));
       } else {
@@ -73,7 +71,7 @@ const Feed = ({ isAccConnected, connectAction }) => {
           signer,
         );
 
-        await TwitterContract.deleteTweet(key);
+        TwitterContract.deleteTweet(key);
         const allTweets = await TwitterContract.getAllTweets();
         setPosts(getStructuredTweets(allTweets, ethereum.selectedAddress));
       } else {
@@ -86,7 +84,7 @@ const Feed = ({ isAccConnected, connectAction }) => {
 
   useEffect(() => {
     getAllTweets();
-  }, []);
+  }, [posts]);
 
   return (<Grid container direction='column' display='flex' flexShrink={1} padding={'20px 0'} height={'100%'}
                 width={'calc(100% - 800px)'} minWidth={400}>
@@ -107,14 +105,21 @@ const Feed = ({ isAccConnected, connectAction }) => {
       </Button>
       <Typography variant='caption'> Connect to Goerly chain. If you disconnect, reload the page </Typography>
     </div>}
-    <TweetInput isDisabled={isAccConnected} onSubmit={getAllTweets} />
-    <FlipMove sx={{
-      width: '100%', maxWidth: 400, bgcolor: 'background.paper',
+    <TweetInput isDisabled={isAccConnected} onSubmitFunc={getAllTweets} />
+    <div style={{
+      width: '100%',
+      height: 'calc(100% - 182px)',
+      maxHeight: 'calc(100% - 182px)',
+      overflowY: 'scroll',
     }}>
-      {
-        posts.map((p) => <Post key={p.id} {...p} onDelete={deleteTweet(p.id)} />)
-      }
-    </FlipMove>
+      <FlipMove sx={{
+        width: '100%', maxWidth: 400, bgcolor: 'background.paper',
+      }}>
+        {
+          posts.map((p) => <Post key={p.id} {...p} onDelete={deleteTweet(p.id)} />)
+        }
+      </FlipMove>
+    </div>
   </Grid>);
 };
 

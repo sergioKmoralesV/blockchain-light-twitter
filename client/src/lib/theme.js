@@ -57,6 +57,12 @@ const theme = createTheme({
             pointerEvents: 'auto',
           },
         },
+        containedSecondary: {
+          backgroundColor: '#AAB8C2',
+          '&:hover': {
+            backgroundColor: '#657786',
+          },
+        },
       },
     },
   },
