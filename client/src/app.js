@@ -15,6 +15,7 @@ function App() {
 
       if (!ethereum) {
         console.log('Metamask not detected');
+        return;
       }
 
       const chainId = await ethereum.request({
@@ -22,12 +23,11 @@ function App() {
       });
       console.log('Connected to chain:', chainId);
 
-      const goerlyChainId = '0xc1d25746A1F02D8d0Fc73fff8B5F3Df1113305C5';
+      const goerlyChainId = '0x1';
       if (chainId !== goerlyChainId) {
         setNetwork(false);
-        console.error('Not connected');
-      } else {
-        setNetwork(true);
+        console.error('You are not connected');
+        return;
       }
 
       const accounts = await ethereum.request({
@@ -36,15 +36,32 @@ function App() {
 
       console.log('Found account', accounts[0]);
       setCurrentAcc(accounts[0]);
-      console.log(currentAcc, network);
     } catch (error) {
       console.log('Error connecting to metamask', error);
     }
   };
 
+  // Checks if wallet is connected to the correct network
+  const checkCorrectNetwork = async () => {
+    const { ethereum } = window;
+    const chainId = await ethereum.request({
+      method: 'eth_chainId',
+    });
+    console.log('Connected to chain:', chainId);
+
+    const goerlyChainId = '0x1';
+
+    if (chainId !== goerlyChainId) {
+      setNetwork(false);
+    } else {
+      setNetwork(true);
+    }
+  };
+
   useEffect(() => {
     connectWallet();
-  }, [currentAcc]);
+    checkCorrectNetwork();
+  }, [currentAcc, network]);
 
   return (<Stack
     position='fixed'

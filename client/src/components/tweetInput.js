@@ -25,7 +25,6 @@ const TweetInput = ({ isDisabled }) => {
           placeholder='Write your tweet here'
           autoFocus
           fullWidth
-          autoComplete={false}
           disabled={isDisabled}
           {...register('tweetText', {
             required: 'Tweet cannot be empty',
