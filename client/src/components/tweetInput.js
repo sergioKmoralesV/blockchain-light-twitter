@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, TextField, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 
-const TweetInput = () => {
+const TweetInput = ({ isDisabled }) => {
   const { register, handleSubmit, reset } = useForm({
     mode: 'onSubmit',
   });
@@ -25,6 +26,7 @@ const TweetInput = () => {
           autoFocus
           fullWidth
           autoComplete={false}
+          disabled={isDisabled}
           {...register('tweetText', {
             required: 'Tweet cannot be empty',
           })}
@@ -35,7 +37,8 @@ const TweetInput = () => {
       }}>
         <Button color='primary' variant='contained' type={'submit'} sx={{
           textTransform: 'none',
-        }}>
+        }} disabled={isDisabled}
+        >
           Tweet
         </Button>
         <Typography variant='caption' color='error'>
@@ -43,6 +46,10 @@ const TweetInput = () => {
         </Typography>
       </div>
     </form>);
+};
+
+TweetInput.propTypes = {
+  isDisabled: PropTypes.bool.isRequired,
 };
 
 export default TweetInput;

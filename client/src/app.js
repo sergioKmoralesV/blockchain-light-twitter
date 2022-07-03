@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Stack } from '@mui/material';
+import isEmpty from 'lodash/isEmpty';
 import Sidebar from './components/sidebar';
 import Feed from './components/feed';
 import Widgets from './components/widgets';
@@ -43,7 +44,7 @@ function App() {
 
   useEffect(() => {
     connectWallet();
-  });
+  }, [currentAcc]);
 
   return (<Stack
     position='fixed'
@@ -63,7 +64,7 @@ function App() {
       }}
     >
       <Sidebar />
-      <Feed />
+      <Feed isAccConnected={isEmpty(currentAcc)} account={currentAcc} />
       <Widgets />
     </div>
   </Stack>);
