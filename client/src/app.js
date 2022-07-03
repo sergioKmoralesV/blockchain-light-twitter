@@ -23,7 +23,7 @@ function App() {
       });
       console.log('Connected to chain:', chainId);
 
-      const goerlyChainId = '0x5';
+      const goerlyChainId = '0x4';
       if (chainId !== goerlyChainId) {
         setNetwork(false);
         console.error('You are not connected');
