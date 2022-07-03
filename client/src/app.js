@@ -75,7 +75,7 @@ function App() {
         height: '100%',
         minHeight: '100%',
         maxHeight: '100%',
-        width: 'calc(100% - 240px)',
+        width: '100%',
         display: 'flex',
         flexDirection: 'row',
       }}
