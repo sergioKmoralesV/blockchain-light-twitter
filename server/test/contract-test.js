@@ -3,6 +3,18 @@ const {expect} = require("chai");
 const {ethers} = require("hardhat");
 const {address} = require('hardhat/internal/core/config/config-validation')
 
+
+
+describe("UT 0: Contract instance check unit test", function() {
+  it("should return the contract's signer", async function() {
+    const EPITwitter = await ethers.getContractFactory("Twitter");
+    const [owner, addr1, addr2] = await ethers.getSigners();
+    const twitter = await EPITwitter.deploy();
+    await twitter.deployed();
+    await expect(twitter).to.with[Symbol.hasInstance];
+  })
+});
+
 describe("EPITwitter Contract : unit tests",  function() {
   let EPITwitter;
   let twitter;
@@ -21,9 +33,9 @@ describe("EPITwitter Contract : unit tests",  function() {
         'tweetText': 'Unit test New Tweet',
         'isDeleted': false
       };
-      const TWEET_ID = await twitter.readTweets();
-      console.debug(TWEET_ID)
-      await expect(await twitter.createTweet(tweet.tweetText, tweet.isDeleted)).to.emit(twitter, 'CreateTweet').withArgs(owner.address,TWEET_ID+1);
+      const TWEETS_LIST = await twitter.readTweets();
+      const TWEET_ID = TWEETS_LIST.length;
+      await expect(await twitter.createTweet(tweet.tweetText, tweet.isDeleted)).to.emit(twitter, 'CreateTweet').withArgs(owner.address,TWEET_ID);
     })
   });
 
@@ -37,11 +49,14 @@ describe("EPITwitter Contract : unit tests",  function() {
   describe("UT 3: Update tweet", function() {
     it("should emit updateTweet event", async function() {
       let tweet = {
-        'tweetText': 'New Tweet',
+        'tweetText': 'New Tweet for Update unit test',
+        'tweetUpdatedText': 'Updated Tweet',
         'isDeleted': false
       };
-      const TWEET_ID = twitter.readTweets();
-      await expect(await twitter.updateTweet(TWEET_ID,tweet.tweetText)).to.emit(twitter, 'UpdateTweet').withArgs(TWEET_ID,tweetText);
+      await twitter.createTweet(tweet.tweetText, tweet.isDeleted)
+      const TWEETS_LIST = await twitter.readTweets();
+      const TWEET_ID = TWEETS_LIST.length-1;
+      await expect(await twitter.updateTweet(TWEET_ID,tweet.tweetUpdatedText)).to.emit(twitter, 'UpdateTweet').withArgs(TWEET_ID,tweet.tweetUpdatedText);
     })
   });
 
@@ -52,10 +67,11 @@ describe("EPITwitter Contract : unit tests",  function() {
         'tweetText': 'New Tweet for Delete unit test',
         'isDeleted': false
       };
-      twitter.createTweet(tweet.tweetText, tweet.isDeleted)
-      const TWEET_ID = twitter.readTweets();
+      await twitter.createTweet(tweet.tweetText, tweet.isDeleted)
+      const TWEETS_LIST = await twitter.readTweets();
+      const TWEET_ID = TWEETS_LIST.length-1;
       const TWEET_DELETED = true;
-      await expect(twitter.connect(addr1).deleteTweet(TWEET_ID)).to.emit(twitter, 'DeleteTweet').withArgs(TWEET_ID, TWEET_DELETED);
+      await expect(twitter.deleteTweet(TWEET_ID)).to.emit(twitter, 'DeleteTweet').withArgs(TWEET_ID, TWEET_DELETED);
     })
   })
 });
