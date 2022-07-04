@@ -5,13 +5,12 @@ module.exports = {
     mocha: true,
     node: true,
   },
-  extends: [
-    "standard",
-    "plugin:prettier/recommended",
-    "plugin:node/recommended",
-  ],
+  extends: ["standard", "plugin:prettier/recommended", "plugin:node/recommended"],
   parserOptions: {
     ecmaVersion: 12,
+  },
+  rules: {
+    'max-len': ["error", { "code": 120 }]
   },
   overrides: [
     {
