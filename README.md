@@ -34,8 +34,8 @@ In order to fully run the application, we need the following elements:
 ## Configurations and commands to run the client locally and host the server on alchemy  
 ### Server part:
 1. To define your alchemy app address that will be hosting the server, create a .env file from [.env.example](./.env.example)  
-2. Command line: npm deploy
+2. Command line: ``` npx hardhat run scripts/deploy.js --network rinkeby ```
 
 ### Client part:
-1. Command line: npm start
+1. Command line: ``` npm start ```
 2. Connect to [http://localhost:3000](http://localhost:3000)
