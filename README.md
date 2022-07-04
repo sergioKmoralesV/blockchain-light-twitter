@@ -20,20 +20,20 @@ In order to fully run the application, we need the following elements:
 
 
 ## Tools used:  
-* [Hardhat](https://hardhat.org/) development environment to compile, deploy and test the smart contracts 
-* Chai/Mocha packages to set unit tests on client and server functionalities
-* Eslint 
-* Prettier
-* Solhint
-* Openzeppelin/contracts
+* [Hardhat](https://hardhat.org/), development environment to compile, deploy and test the smart contracts 
+* Chai/Mocha, packages to set unit tests on client and server functionalities
+* Eslint, open source project for linting Javascript code
+* Prettier, to format code  
+* Solhint, open source project for linting Solidity code
+* Openzeppelin/contracts, libraries allowing to build ready to use smarts contracts based on Ethereum or other blockchains  
 
 ## Infrastructure: 
-
+![EPITwitter infrastructure](assets/EPITwitter_infra.png)
 
 
 ## Configurations and commands to run the client locally and host the server on alchemy  
 ### Server part:
-1. To define your alchemy app address that will be hosting the server, create a .env file from [.env.example](/.env.example). 
+1. To define your alchemy app address that will be hosting the server, create a .env file from [.env.example](./.env.example)  
 2. Command line: npm deploy
 
 ### Client part:
