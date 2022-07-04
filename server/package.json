@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
-    "deploy": "npx hardhat run --network goerli scripts/deploy.js"
+    "deploy": "npx hardhat run --network rinkeby scripts/deploy.js"
   },
   "repository": {
     "type": "git",
