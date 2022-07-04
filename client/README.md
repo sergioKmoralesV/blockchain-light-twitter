@@ -1,14 +1,10 @@
 # Light Decentralized Twitter - Client side
-### Authors ✍️
-- Sergio Morales (https://github.com/sergioKmoralesV)
-- Isaac Gonzales (https://github.com/Isaacgv)
-- Anthony Siampiringue (https://github.com/Anthony-Si)
 
 ## Getting started 🏁
 ### Install dependencies
 To start the application make sure you are using the version `> 16` of `node`.
 To install all the dependencies, please run the command:
-```
+```shell
 npm install
 ```
 ### Verify my Twitter contract config
@@ -17,7 +13,7 @@ If the information is incorrect, you won't be able to effectuate any operations.
 
 ### Running the application
 To run the application, run the command:
-```
+```shell
 npm start
 ```
 ## Using Smart Contracts 📑
