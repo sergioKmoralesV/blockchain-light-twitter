@@ -3,7 +3,7 @@ const {expect} = require("chai");
 const {ethers} = require("hardhat");
 const {address} = require('hardhat/internal/core/config/config-validation')
 
-describe("EPITwitter Contract : unit tests", function() {
+describe("EPITwitter Contract : unit tests",  function() {
   let EPITwitter;
   let twitter;
   let owner;
@@ -12,6 +12,7 @@ describe("EPITwitter Contract : unit tests", function() {
     EPITwitter = await ethers.getContractFactory("Twitter");
     [owner, addr1, addr2] = await ethers.getSigners();
     twitter = await EPITwitter.deploy();
+    await twitter.deployed()
   });
 
   describe("UT 1: Create tweet", function() {
@@ -20,7 +21,9 @@ describe("EPITwitter Contract : unit tests", function() {
         'tweetText': 'Unit test New Tweet',
         'isDeleted': false
       };
-      await expect(await twitter.createTweet(tweet.tweetText, tweet.isDeleted)).to.emit(twitter, 'CreateTweet'),twitter.tweetId;
+      const TWEET_ID = await twitter.readTweets();
+      console.debug(TWEET_ID)
+      await expect(await twitter.createTweet(tweet.tweetText, tweet.isDeleted)).to.emit(twitter, 'CreateTweet').withArgs(owner.address,TWEET_ID+1);
     })
   });
 
@@ -45,6 +48,11 @@ describe("EPITwitter Contract : unit tests", function() {
 
   describe("UT 4: Delete Tweet", function() {
     it("should emit delete tweet event", async function() {
+      let tweet = {
+        'tweetText': 'New Tweet for Delete unit test',
+        'isDeleted': false
+      };
+      twitter.createTweet(tweet.tweetText, tweet.isDeleted)
       const TWEET_ID = twitter.readTweets();
       const TWEET_DELETED = true;
       await expect(twitter.connect(addr1).deleteTweet(TWEET_ID)).to.emit(twitter, 'DeleteTweet').withArgs(TWEET_ID, TWEET_DELETED);

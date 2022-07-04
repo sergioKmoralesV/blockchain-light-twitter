@@ -32,5 +32,10 @@ In order to fully run the application, we need the following elements:
 
 
 ## Configurations and commands to run the client locally and host the server on alchemy  
+### Server part:
 1. To define your alchemy app address that will be hosting the server, modify the [.env.example](.env.example) file. 
-2. npm deploy
+2. Command line: npm deploy
+
+### Client part:
+1. Command line: npm run
+2. Connect to [http://localhost:3000](http://localhost:3000)
