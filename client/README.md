@@ -1,8 +1,4 @@
 # Light Decentralized Twitter - Client side
-### Authors ✍️
-- Sergio Morales (https://github.com/sergioKmoralesV)
-- Isaac Gonzales (https://github.com/Isaacgv)
-- Anthony Siampiringue (https://github.com/Anthony-Si)
 
 ## Getting started 🏁
 ### Install dependencies

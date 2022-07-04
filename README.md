@@ -1,9 +1,9 @@
 # EPITwitter : 
 # A decentralized version of Twitter based en ethereum smart contracts
-## Team members: 
-* Sergio Kevin MORALES VILLARROEL
-* Isaac GUILLERMO GONZALES VIZCARRA 
-* Anthony SIAMPIRINGUE    
+## Team members:
+* Sergio Kevin MORALES VILLARROEL (https://github.com/sergioKmoralesV)
+* Isaac GUILLERMO GONZALES VIZCARRA (https://github.com/Isaacgv)
+* Anthony SIAMPIRINGUE (https://github.com/Anthony-Si) 
 
 
 ## Summary:  
