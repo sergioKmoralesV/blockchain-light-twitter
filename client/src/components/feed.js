@@ -108,8 +108,8 @@ const Feed = ({ isAccConnected, connectAction }) => {
     <TweetInput isDisabled={isAccConnected} onSubmitFunc={getAllTweets} />
     <div style={{
       width: '100%',
-      height: 'calc(100% - 182px)',
-      maxHeight: 'calc(100% - 182px)',
+      height: 'calc(100vh - 232px)',
+      maxHeight: 'calc(100vh - 232px)',
       overflowY: 'scroll',
     }}>
       <FlipMove sx={{
