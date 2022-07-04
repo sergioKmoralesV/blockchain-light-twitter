@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "coverage": "npx hardhat coverage",
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
     "deploy": "npx hardhat run --network rinkeby scripts/deploy.js"
